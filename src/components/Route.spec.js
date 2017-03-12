@@ -3,8 +3,8 @@ import { shallow } from 'enzyme'
 import Route from './Route'
 
 const sampleRoute = {
-  name: 'Dexter',
-  id: 123
+  longName: 'Dexter',
+  id: '123'
 }
 
 const setup = props => {

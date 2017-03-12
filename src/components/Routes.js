@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Route from './Route'
 
-const Routes = ({routes, fetchPostsIfNeeded}) => {
+const Routes = ({routes, fetchRoutesIfNeeded}) => {
   const routeList = routes.map(route =>
     <Route {...route} key={route.id} />
   )
@@ -17,13 +17,13 @@ const Routes = ({routes, fetchPostsIfNeeded}) => {
 
 
 Routes.componentDidMount = () => {
-  fetchPostsIfNeeded()
+  fetchRoutesIfNeeded()
 }
 
 Routes.propTypes = {
   routes: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  fetchPostsIfNeeded: PropTypes.func.isRequired
+  fetchRoutesIfNeeded: PropTypes.func.isRequired
 }
 
 export default Routes

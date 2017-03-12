@@ -4,17 +4,6 @@ import {
   REQUEST_ROUTES, RECEIVE_ROUTES
 } from '../actions/routes'
 
-const defaultState = {
-  isFetching: false,
-  routeIds: [1],
-  byId: {
-    1: {
-      name: "Dexter Route",
-      id: 1
-    }
-  }
-}
-
 const routeIds = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_ROUTES:

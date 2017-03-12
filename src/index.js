@@ -1,10 +1,11 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 import { createStore, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
-import App from './containers/App'
+import Root from './containers/Root'
 import reducer from './reducers'
 
 
@@ -19,15 +20,11 @@ const store = createStore(
   reducer,
   applyMiddleware(...middleware)
 )
+const history = syncHistoryWithStore(browserHistory, store)
 
 const rootEl = document.getElementById('root')
 
-const render = () => ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+render(
+  <Root store={store} history={history} />,
   rootEl
 )
-
-render()
-store.subscribe(render)

@@ -1,7 +1,14 @@
 {
   "extends": "eslint:recommended",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      "modules": true,
+      "spread": true
+    }
+
   },
   "rules": {
     "indent": [2, 2, {"SwitchCase": 1}],
@@ -14,12 +21,6 @@
     "node": true,
     "browser": true,
     "jasmine": true
-  },
-  "ecmaFeatures": {
-    "jsx": true,
-    "experimentalObjectRestSpread": true,
-    "modules": true,
-    "spread": true
   },
   "plugins": [
     "react"

@@ -4,13 +4,15 @@ import Route from './Route'
 import Routes from './Routes'
 
 const fakeRoutes =  [{
-  id: 1,
-  name: 'Dexter'
+  id: 'ddot123',
+  longName: 'Dexter'
 }]
+
+const noop = () => {}
 
 function setup() {
   const component = shallow(
-    <Routes routes={fakeRoutes} isFetching={false} />
+    <Routes routes={fakeRoutes} isFetching={false} fetchRoutesIfNeeded={noop} />
   )
 
   return {

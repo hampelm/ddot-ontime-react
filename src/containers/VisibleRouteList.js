@@ -20,7 +20,7 @@ class VisibleRouteList extends Component {
   }
 
   render() {
-    const {routes, fetchPostsIfNeeded} = this.props
+    const {routes} = this.props
 
     const routeList = routes.map(route =>
       <Route {...route} key={route.id} />

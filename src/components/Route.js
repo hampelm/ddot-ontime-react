@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 
-const Route = ({ longName, id }) => (
+const Route = ({ longName }) => (
   <div className="route">
     <h3>{longName}</h3>
   </div>

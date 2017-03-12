@@ -1,11 +1,21 @@
-import React from 'react'
-import VisibleRouteList from './VisibleRouteList'
+import React, { Component, PropTypes } from 'react'
 
-const App = () => (
-  <div>
-    Hello whirled
-    <VisibleRouteList />
-  </div>
-)
+class App extends Component {
+  static propTypes = {
+    // Injected by React Router
+    children: PropTypes.node
+  }
+
+  render() {
+    const { children, } = this.props
+    return (
+      <div>
+        <h1>Hello whirled</h1>
+
+        {children}
+      </div>
+    )
+  }
+}
 
 export default App
