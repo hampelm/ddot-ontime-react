@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react'
 
-const Trip = ({  }) => (
+const Trip = ({ tripId }) => (
   <div className="trip">
-    <h3>Here is a trip</h3>
+    <h3>Here is a trip {tripId}</h3>
   </div>
 )
 
-// Route.propTypes = {
-//   longName: PropTypes.string.isRequired,
-//   id:   PropTypes.string.isRequired
-// }
+Trip.propTypes = {
+  tripId: PropTypes.string.isRequired
+}
 
 export default Trip

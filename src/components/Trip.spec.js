@@ -3,6 +3,7 @@ import { shallow } from 'enzyme'
 import Trip from './Trip'
 
 const sampleTrip = {
+  tripId: '123'
 }
 
 const setup = props => {

@@ -35,7 +35,6 @@ const shouldFetchRoutes = (state) => {
 }
 
 export const fetchRoutesIfNeeded = () => (dispatch, getState) => {
-  console.log('xxx fetch routes if needed', shouldFetchRoutes(getState()));
   if (shouldFetchRoutes(getState())) {
     return dispatch(fetchRoutes())
   }

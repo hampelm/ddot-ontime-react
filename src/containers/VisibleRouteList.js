@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 // import Routes from '../components/Routes'
 import Route from '../components/Route'
+import TripList from './TripList'
 import { getRoutes } from '../reducers/routes'
 import { fetchRoutesIfNeeded } from '../actions/routes'
 
@@ -22,9 +23,10 @@ class VisibleRouteList extends Component {
   render() {
     const {routes} = this.props
 
-    const routeList = routes.map(route =>
-      <Route {...route} key={route.id} />
-    )
+    const routeList = routes.map(route => <div key={route.id} >
+      <Route {...route} />
+      <TripList route={route} />
+    </div>)
 
     return (
       <div className='routes'>
