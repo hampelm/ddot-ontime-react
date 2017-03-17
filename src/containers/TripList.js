@@ -15,7 +15,6 @@ class TripList extends Component {
   }
 
   componentDidMount = () => {
-    console.log("xxx tripList did mount", this);
     this.props.fetchTripsIfNeeded(this.props.route)
   }
 

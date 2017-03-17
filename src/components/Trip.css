@@ -1,0 +1,28 @@
+@-webkit-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #AD301B; }
+  100% { background-color: #FFFFFF; }
+}
+@-moz-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #AD301B; }
+  100% { background-color: #FFFFFF; }
+}
+@-o-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #AD301B; }
+  100% { background-color: #FFFFFF; }
+}
+@keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #AD301B; }
+  100% { background-color: #FFFFFF; }
+}
+
+td.refreshes {
+    background-image:none !important;
+    -webkit-animation: fadeIt 5s ease-in-out;
+       -moz-animation: fadeIt 5s ease-in-out;
+         -o-animation: fadeIt 5s ease-in-out;
+            animation: fadeIt 5s ease-in-out;
+}

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import Trip from './Trip'
 
 const sampleTrip = {
-  tripId: '123'
+  tripId: 'Sample trip'
 }
 
 const setup = props => {
@@ -13,13 +13,13 @@ const setup = props => {
 
   return {
     component: component,
-    h3: component.find('h3')
+    tr: component.find('tr')
   }
 }
 
 describe('Trip', () => {
   it('should render the trip name', () => {
-    const { h3 } = setup(sampleTrip)
-    expect(h3.text()).toMatch(/Here is a trip/)
+    const { tr } = setup(sampleTrip)
+    expect(tr.text()).toMatch(/Sample trip/)
   })
 })

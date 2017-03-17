@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Header from '../components/Hello';
 
 class App extends Component {
   static propTypes = {
@@ -10,7 +11,7 @@ class App extends Component {
     const { children, } = this.props
     return (
       <div>
-        <h1>Hello whirled</h1>
+        <Header />
 
         {children}
       </div>

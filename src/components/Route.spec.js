@@ -14,13 +14,13 @@ const setup = props => {
 
   return {
     component: component,
-    h3: component.find('h3')
+    tr: component.find('tr')
   }
 }
 
 describe('Route', () => {
   it('should render the route name', () => {
-    const { h3 } = setup(sampleRoute)
-    expect(h3.text()).toMatch(/Dexter/)
+    const { tr } = setup(sampleRoute)
+    expect(tr.text()).toMatch(/Dexter/)
   })
 })

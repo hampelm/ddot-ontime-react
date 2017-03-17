@@ -1,14 +1,18 @@
 import React, { PropTypes } from 'react'
 
-const Route = ({ longName }) => (
-  <div className="route">
-    <h3>{longName}</h3>
-  </div>
+const Route = ({ longName, onRouteRefreshClick }) => (
+  <tr className="route">
+    <td colSpan="4">
+      {longName}
+      <button onClick={onRouteRefreshClick} value="Refresh route" />
+    </td>
+  </tr>
 )
 
 Route.propTypes = {
   longName: PropTypes.string.isRequired,
-  id:   PropTypes.string.isRequired
+  id:   PropTypes.string.isRequired,
+  onRouteRefreshClick: PropTypes.func.isRequired
 }
 
 export default Route

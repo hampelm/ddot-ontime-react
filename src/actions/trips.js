@@ -12,13 +12,14 @@ export const requestTrips = (route) => ({
 export const receiveTrips = (route, json) => ({
   type: RECEIVE_TRIPS,
   route: route,
+  tripDetails: json.data.references.trips,
   trips: json.data.list,
   receivedAt: Date.now()
 })
 
 const fetchTrips = (route) => (dispatch) => {
   dispatch(requestTrips(route))
-  return fetch(`https://ddot-beta.herokuapp.com/api/api/where/trips-for-route/${route.id}.json?key=BETA&format=json`)
+  return fetch(`https://ddot-beta.herokuapp.com/api/api/where/trips-for-route/${route.id}.json?key=BETA&includeStatus=true`)
     .then(response => response.json())
     .then(json => dispatch(receiveTrips(route, json)))
 }
@@ -31,6 +32,12 @@ export const shouldFetchTrips = (route, state) => {
   }
 
   return true
+}
+
+export const fetchTripIfNeeded = (routeId) => (dispatch, getState) => {
+  if (shouldFetchTrips({id: routeId}, getState())) {
+    return dispatch(fetchTrips({id: routeId}))
+  }
 }
 
 export const fetchTripsIfNeeded = (route) => (dispatch, getState) => {

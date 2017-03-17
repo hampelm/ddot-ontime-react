@@ -16,13 +16,28 @@ const tripIds = (state = [], action) => {
   }
 }
 
+
+export const mergeTripDetails = (tripDetails = [], trip = {}) => {
+  for (var i = 0; i < tripDetails.length; i++) {
+    if (tripDetails[i].id === trip.tripId) {
+      return Object.assign({},
+        trip,
+        trip.status,
+        tripDetails[i]
+      )
+    }
+  }
+
+  return trip
+}
+
 const byId  = (state = {}, action) => {
   switch(action.type) {
     case RECEIVE_TRIPS:
       return {
         ...state,
         ...action.trips.reduce((obj, trip) => {
-          obj[trip.tripId] = trip
+          obj[trip.tripId] = mergeTripDetails(action.tripDetails, trip)
           return obj
         }, {})
       }

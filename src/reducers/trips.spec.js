@@ -1,5 +1,5 @@
 import trips from './trips'
-import { getTripsForRoute } from './trips'
+import { getTripsForRoute, mergeTripDetails } from './trips'
 
 import {
   REQUEST_TRIPS, RECEIVE_TRIPS
@@ -68,6 +68,35 @@ describe('trips', () => {
         1: [22, 33]
       }
     })
+  })
+
+
+  describe('mergeTripDetails', () => {
+    it('Should map details to a trip', () => {
+      const tripDetails = [{
+        id: 'trip1',
+        details: 'Joy Road'
+      }, {
+        id: 'trip2',
+        details: "Dexter"
+      }]
+
+      const trip = {
+        tripId: 'trip2',
+        otherDetails: 'Westbound',
+        status: {
+          scheduleDeviation: 25
+        }
+      }
+
+      const results = mergeTripDetails(tripDetails, trip)
+
+      expect(results.tripId).toEqual(trip.tripId)
+      expect(results.otherDetails).toEqual(trip.otherDetails)
+      expect(results.details).toEqual(tripDetails[1].details)
+      expect(results.scheduleDeviation).toEqual(trip.status.scheduleDeviation)
+    })
+
   })
 
 

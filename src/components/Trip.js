@@ -1,13 +1,20 @@
 import React, { PropTypes } from 'react'
+import './Trip.css'
 
-const Trip = ({ tripId }) => (
-  <div className="trip">
-    <h3>Here is a trip {tripId}</h3>
-  </div>
+const Trip = ({ tripId, tripHeadsign, lastUpdateTime, scheduleDeviation }) => (
+  <tr className="trip">
+    <td>{tripId}</td>
+    <td>{tripHeadsign}</td>
+    <td>{lastUpdateTime}</td>
+    <td className="refreshes">{scheduleDeviation}</td>
+  </tr>
 )
 
 Trip.propTypes = {
-  tripId: PropTypes.string.isRequired
+  tripId: PropTypes.string.isRequired,
+  tripHeadsign: PropTypes.string,
+  lastUpdateTime: PropTypes.number,
+  scheduleDeviation: PropTypes.number
 }
 
 export default Trip

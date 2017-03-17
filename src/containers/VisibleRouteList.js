@@ -5,6 +5,7 @@ import Route from '../components/Route'
 import TripList from './TripList'
 import { getRoutes } from '../reducers/routes'
 import { fetchRoutesIfNeeded } from '../actions/routes'
+import { fetchTripIfNeeded } from '../actions/trips'
 
 // Cribbed from examples => async => containers/App
 
@@ -16,15 +17,14 @@ class VisibleRouteList extends Component {
   }
 
   componentDidMount = () => {
-    console.log("xxx did mount", this);
     this.props.fetchRoutesIfNeeded()
   }
 
   render() {
-    const {routes} = this.props
+    const {routes, onRouteRefreshClick} = this.props
 
     const routeList = routes.map(route => <div key={route.id} >
-      <Route {...route} />
+      <Route {...route} onRouteRefreshClick={() => onRouteRefreshClick(route.id)} />
       <TripList route={route} />
     </div>)
 
@@ -49,5 +49,6 @@ const mapStateToProps = state => {
 // "Implementing Container Components"
 
 export default connect(mapStateToProps, {
-  fetchRoutesIfNeeded // Kinda from real-world/containers/RepoPage
+  fetchRoutesIfNeeded, // Kinda from real-world/containers/RepoPage
+  onRouteRefreshClick: fetchTripIfNeeded
 })(VisibleRouteList)

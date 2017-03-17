@@ -3,18 +3,18 @@ import { connect } from 'react-redux'
 
 import Route from './Route'
 
-const Routes = ({routes, fetchRoutesIfNeeded}) => {
+// TODO I think this is deprecated!! 
+const Routes = ({routes, fetchRoutesIfNeeded, onRouteRefreshClick}) => {
   const routeList = routes.map(route =>
-    <Route {...route} key={route.id} />
+    <Route {...route} onRouteRefreshClick={() => onRouteRefreshClick(route.id)} key={route.id} />
   )
 
   return (
-    <div className='routes'>
+    <table className='routes'>
       {routeList}
-    </div>
+    </table>
   )
 }
-
 
 Routes.componentDidMount = () => {
   fetchRoutesIfNeeded()
@@ -23,7 +23,8 @@ Routes.componentDidMount = () => {
 Routes.propTypes = {
   routes: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  fetchRoutesIfNeeded: PropTypes.func.isRequired
+  fetchRoutesIfNeeded: PropTypes.func.isRequired,
+  onRouteRefreshClick: PropTypes.func.isRequired
 }
 
 export default Routes
