@@ -5,6 +5,7 @@
   "devDependencies": {
     "deep-freeze": "0.0.1",
     "enzyme": "^2.4.1",
+    "gh-pages": "^0.12.0",
     "react-addons-test-utils": "^15.3.0",
     "react-scripts": "^0.9.3",
     "redux-devtools": "^3.3.1",
@@ -28,6 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "test": "react-scripts test"
-  }
+    "test": "react-scripts test",
+    "deploy": "npm run build&&gh-pages -d build"
+  },
+  "homepage": "http://hampelm.github.io/ddot-ontime-react"
 }
