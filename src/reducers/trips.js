@@ -4,13 +4,37 @@ import {
   REQUEST_TRIPS, RECEIVE_TRIPS
 } from '../actions/trips'
 
+const LATE = 'late'
+const ONTIME = 'on time'
+const EARLY = 'early'
+const NOT_TRACKED = 'not tracked'
+
+export const calculateDelay = (seconds) => {
+  if (seconds >= 360) {
+    return LATE
+  } else if (seconds >=0) {
+    return ONTIME
+  } else {
+    return EARLY
+  }
+}
+
+const overview = (state = [], action) => {
+  switch (action.type) {
+    case RECEIVE_TRIPS:
+      return state
+    default:
+      return state
+  }
+}
+
 const tripIds = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_TRIPS:
-      return [
+      return [...new Set([
         ...state,
         ...action.trips.map(trip => trip.tripId)
-      ]
+      ])]
     default:
       return state
   }
@@ -38,6 +62,11 @@ const byId  = (state = {}, action) => {
         ...state,
         ...action.trips.reduce((obj, trip) => {
           obj[trip.tripId] = mergeTripDetails(action.tripDetails, trip)
+          obj[trip.tripId].delay = calculateDelay(obj[trip.tripId].scheduleDeviation)
+
+          if (!obj[trip.tripId].scheduleDeviation && !obj[trip.tripId].predicted) {
+            obj[trip.tripId].delay = NOT_TRACKED
+          }
           return obj
         }, {})
       }
@@ -93,7 +122,22 @@ export const getTrip = (state, id) =>
 
 
 export const getTrips = state =>
-  state.routeIds.map(id => getTrip(state, id))
+  state.tripIds.map(id => getTrip(state, id))
+
+
+export const getOverview = state => {
+  let overview = {}
+  overview[EARLY] = 0
+  overview[ONTIME] = 0
+  overview[LATE] = 0
+  overview[NOT_TRACKED] = 0
+
+  getTrips(state).forEach((trip) => {
+    overview[trip.delay]++
+  })
+
+  return overview
+}
 
 
 export const getTripsForRoute = (state, routeId) => {
@@ -101,7 +145,14 @@ export const getTripsForRoute = (state, routeId) => {
   if (ids === undefined) { return [] }
 
   const trips = ids.map(id => {
-    return state.byId[id]
+    // Filter out mismatches
+    let trip = state.byId[id];
+    if (!trip) return;
+    if (trip.routeId === routeId) {
+      return trip
+    }
   })
-  return trips
+  return trips.filter(obj => {
+    return !!obj
+  })
 }

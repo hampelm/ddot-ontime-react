@@ -2,9 +2,12 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Route from './Route'
 
+const noop = () => {}
+
 const sampleRoute = {
   longName: 'Dexter',
-  id: '123'
+  id: '123',
+  onRouteRefreshClick: noop
 }
 
 const setup = props => {
@@ -14,13 +17,13 @@ const setup = props => {
 
   return {
     component: component,
-    tr: component.find('tr')
+    div: component.find('div.route')
   }
 }
 
 describe('Route', () => {
   it('should render the route name', () => {
-    const { tr } = setup(sampleRoute)
-    expect(tr.text()).toMatch(/Dexter/)
+    const { div } = setup(sampleRoute)
+    expect(div.text()).toMatch(/Dexter/)
   })
 })

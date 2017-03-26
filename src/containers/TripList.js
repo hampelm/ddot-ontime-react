@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Trip from '../components/Trip'
 import { getTripsForRoute } from '../reducers/trips'
 import { fetchTripsIfNeeded } from '../actions/trips'
+import './TripList.css'
 
 // Cribbed from examples => async => containers/App
 

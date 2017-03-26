@@ -1,5 +1,6 @@
 import trips from './trips'
-import { getTripsForRoute, mergeTripDetails } from './trips'
+import { getTripsForRoute, mergeTripDetails, calculateDelay,
+  getOverview } from './trips'
 
 import {
   REQUEST_TRIPS, RECEIVE_TRIPS
@@ -58,10 +59,12 @@ describe('trips', () => {
       },
       byId: {
         22: {
-          tripId: 22
+          tripId: 22,
+          delay: "not tracked"
         },
         33: {
-          tripId: 33
+          tripId: 33,
+          delay: "not tracked"
         }
       },
       byRoute: {
@@ -69,6 +72,59 @@ describe('trips', () => {
       }
     })
   })
+
+
+  describe('calculateDelay', () => {
+    it('calculates early', () => {
+      expect(calculateDelay(-10)).toEqual('early')
+    })
+    it('calculates on time', () => {
+      expect(calculateDelay(10)).toEqual('on time')
+
+    })
+    it('calculates late', () => {
+      expect(calculateDelay(800)).toEqual('late')
+    })
+  })
+
+
+  describe('overview', () => {
+    it('calculates overview', () => {
+      const trips = {
+        6: {
+          delay: 'early'
+        },
+        5: {
+          delay: 'on time'
+        },
+        4: {
+          delay: 'on time'
+        },
+        3: {
+          delay: 'not tracked'
+        },
+        2: {
+          delay: 'late'
+        },
+        1: {
+          delay: 'late'
+        }
+      }
+
+      const state = {
+        tripIds: [1,2,3,4,5,6],
+        byId: trips
+      }
+
+      expect(getOverview(state)).toEqual({
+        early: 1,
+        'on time': 2,
+        late: 2,
+        'not tracked': 1
+      })
+    })
+  })
+
 
 
   describe('mergeTripDetails', () => {
@@ -109,20 +165,23 @@ describe('trips', () => {
         },
         byId: {
           22: {
-            tripId: 22
+            tripId: 22,
+            routeId: 1
           },
           33: {
-            tripId: 33
+            tripId: 33,
+            routeId: 2
           }
         },
         byRoute: {
-          1: [22, 33]
+          1: [22],
+          2: [33]
         }
       }
 
       const routeTrips = getTripsForRoute(state, 1)
 
-      expect(routeTrips).toEqual([{tripId: 22}, {tripId: 33}])
+      expect(routeTrips).toEqual([{tripId: 22, routeId: 1}])
     })
 
     it('Should get an empty array if no trips', () => {

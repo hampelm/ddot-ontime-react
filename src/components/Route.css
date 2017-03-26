@@ -1,0 +1,15 @@
+.route {
+  margin-top: 1em;
+}
+
+.route h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  padding: 5px 15px;
+}
+
+.route .trip {
+  font-weight: 700;
+  color: #666;
+  padding: 0px 10px;
+}

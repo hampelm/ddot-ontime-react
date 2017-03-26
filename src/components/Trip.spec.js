@@ -13,13 +13,13 @@ const setup = props => {
 
   return {
     component: component,
-    tr: component.find('tr')
+    div: component.find('div.trip')
   }
 }
 
 describe('Trip', () => {
   it('should render the trip name', () => {
-    const { tr } = setup(sampleTrip)
-    expect(tr.text()).toMatch(/Sample trip/)
+    const { div } = setup(sampleTrip)
+    expect(div.text()).toMatch(/Sample trip/)
   })
 })

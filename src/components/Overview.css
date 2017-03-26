@@ -1,0 +1,15 @@
+.stats {
+  display: flex;
+  padding: 15px;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.stats h2 {
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.stats > div {
+  flex: 1;
+}

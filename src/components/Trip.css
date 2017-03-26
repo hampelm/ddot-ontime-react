@@ -1,28 +1,38 @@
 @-webkit-keyframes fadeIt {
   0%   { background-color: #FFFFFF; }
-  50%  { background-color: #AD301B; }
+  50%  { background-color: #f2e5a2; }
   100% { background-color: #FFFFFF; }
 }
 @-moz-keyframes fadeIt {
   0%   { background-color: #FFFFFF; }
-  50%  { background-color: #AD301B; }
+  50%  { background-color: #f2e5a2; }
   100% { background-color: #FFFFFF; }
 }
 @-o-keyframes fadeIt {
   0%   { background-color: #FFFFFF; }
-  50%  { background-color: #AD301B; }
+  50%  { background-color: #f2e5a2; }
   100% { background-color: #FFFFFF; }
 }
 @keyframes fadeIt {
   0%   { background-color: #FFFFFF; }
-  50%  { background-color: #AD301B; }
+  50%  { background-color: #f2e5a2; }
   100% { background-color: #FFFFFF; }
 }
 
-td.refreshes {
+.refreshes {
     background-image:none !important;
-    -webkit-animation: fadeIt 5s ease-in-out;
-       -moz-animation: fadeIt 5s ease-in-out;
-         -o-animation: fadeIt 5s ease-in-out;
-            animation: fadeIt 5s ease-in-out;
+    -webkit-animation: fadeIt 2s ease-in-out;
+       -moz-animation: fadeIt 2s ease-in-out;
+         -o-animation: fadeIt 2s ease-in-out;
+            animation: fadeIt 2s ease-in-out;
+}
+
+.trip {
+  display: flex;
+}
+
+.trip > div {
+  flex: 1;
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
 }

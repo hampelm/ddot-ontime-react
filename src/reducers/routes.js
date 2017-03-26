@@ -23,6 +23,7 @@ const byId  = (state = {}, action) => {
         ...state,
         ...action.routes.reduce((obj, route) => {
           obj[route.id] = route
+          obj.shortName = Number(route.shortName)
           return obj
         }, {})
       }
